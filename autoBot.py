@@ -1,17 +1,18 @@
 import pyautogui 
 import time
+import keyboard  # Ajout du module keyboard
 
-screenWidth, screenHeight = pyautogui.size() # Get the size of the primary monitor.
+screenWidth, screenHeight = pyautogui.size()
 
 def spamDiscord(targetName: str, message: str):
-    # Déplacer la souris vers les coordonnées Discord
-    pyautogui.moveTo(1289, 1628)
-    time.sleep(0.5)
-    
     # Minimiser toutes les fenêtres
     pyautogui.hotkey('win', 'd')
     time.sleep(0.5)
     
+    # Déplacer la souris vers les coordonnées Discord
+    pyautogui.moveTo(1435, 1413)
+    time.sleep(0.5)
+
     # Cliquer pour ouvrir Discord
     pyautogui.click()
     time.sleep(0.5)
@@ -26,30 +27,23 @@ def spamDiscord(targetName: str, message: str):
     pyautogui.press('enter')
 
     # Rentrer dans le chat
-    pyautogui.moveTo(1066, 1510)
+    pyautogui.moveTo(939, 1339)
     pyautogui.leftClick()
     time.sleep(0.2)
 
     counter = 76
-    while(counter > 0):
+    print("Programme en cours d'exécution. Appuyez sur 'q' pour arrêter.")
+    
+    while counter > 0:
+        # Vérifier si 'q' est pressé
+        if keyboard.is_pressed('q'):
+            print("\nProgramme arrêté par l'utilisateur")
+            return  # Sortir de la fonction
+            
         pyautogui.write(message)
         pyautogui.press('enter')
         time.sleep(0.2)
         pyautogui.press('enter')
         counter -= 1
 
-
-def getPos():
-    try:
-        while True:
-            time.sleep(5)
-            x, y = pyautogui.position()
-            positionStr = 'X: ' + str(x).rjust(4) + ' Y: ' + str(y).rjust(4)
-            print(positionStr, end='')
-            print('\b' * len(positionStr), end='', flush=True)
-            return positionStr
-    except KeyboardInterrupt:
-        print('\n')
-
-
-spamDiscord("Thomas", "Es-tu sisra ? 😘")
+spamDiscord("Blacki77", "Eh oui c'est moi")

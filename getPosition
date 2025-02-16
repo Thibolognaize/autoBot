@@ -1,0 +1,32 @@
+import pyautogui
+import time
+
+import pyautogui
+import keyboard
+import time
+
+def getPos():
+    last_position = None
+    print("Déplacez votre souris et appuyez sur Enter pour valider la position...")
+    
+    while True:
+        # Récupère la position actuelle
+        x, y = pyautogui.position()
+        position_str = f'X: {str(x).rjust(4)} Y: {str(y).rjust(4)}'
+        
+        # Affiche la position seulement si elle a changé
+        if position_str != last_position:
+            print(position_str, end='')
+            print('\b' * len(position_str), end='', flush=True)
+            last_position = position_str
+        
+        # Vérifie si Enter est pressé
+        if keyboard.is_pressed('enter'):
+            print(f"\nPosition finale : {position_str}")
+            return (x, y)  # Retourne les coordonnées sous forme de tuple
+            
+        time.sleep(0.1)  # Petit délai pour ne pas surcharger le CPU
+
+# Utilisation
+position = getPos()
+print(f"Coordonnées retournées : {position}")
